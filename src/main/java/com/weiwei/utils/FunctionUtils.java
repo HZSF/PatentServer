@@ -6,13 +6,13 @@ import java.util.concurrent.Future;
 
 public class FunctionUtils {
 
-	public static Object waitTillThreadFinish(Future<?> thread) {
+	public static Optional<?> waitTillThreadFinish(Future<?> thread) {
 		try {
-			return thread.get();
+			return Optional.ofNullable(thread.get());
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 	
 }
