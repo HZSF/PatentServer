@@ -1,4 +1,4 @@
-package com.weiwei.utils;
+package com.weiwei.patent.utils;
 
 import java.util.concurrent.ForkJoinPool;
 
