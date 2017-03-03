@@ -11,33 +11,26 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
-import com.weiwei.patent.common.Constants;
-
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	
+
 	@Autowired
 	private DataSource dataSource;
-	
+
 	@Bean
 	public JdbcTokenStore tokenStore() {
 		return new JdbcTokenStore(dataSource);
 	}
-	
+
 	@Override
 	public void configure(final HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-			.antMatchers(Constants.QUERY).permitAll()
-			.and()
-			.authorizeRequests()
-			.antMatchers("/manage/**").authenticated();
+		http.authorizeRequests().anyRequest().authenticated();
 	}
-	
+
 	@Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.tokenStore(tokenStore());
-    }
-	
+	public void configure(ResourceServerSecurityConfigurer resources) {
+		resources.tokenStore(tokenStore());
+	}
+
 }
