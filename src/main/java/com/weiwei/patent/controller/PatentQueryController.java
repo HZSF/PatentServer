@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.weiwei.patent.common.Constants;
+import com.weiwei.common.Constants;
 
 @RestController
 @RequestMapping(value = Constants.QUERY)
